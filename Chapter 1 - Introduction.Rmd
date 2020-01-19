@@ -1,0 +1,42 @@
+---
+title: "Chapter 1 - Introducton"
+author: "Aravind A"
+date: "19/01/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require("tidyverse")
+```
+## Exercise 
+
+1. It creates an empty graph
+``` {r}
+ggplot(data=mpg)
+````
+
+2. There are 32 rows and 11 columns.
+
+```{r}
+dim(mtcars)
+```
+
+3. drv is a categorical variable that takes there values f , r and 4 signfying whether the car is a front-wheel , rear-wheel or four wheel drive.
+
+
+4. Scatterplot of hwy vs cyl
+
+```{r}
+ggplot(data=mpg) +
+  geom_point(mapping=aes(x=hwy,y=cyl))
+```
+
+4. Plot of class vs drv
+
+```{r}
+ggplot(data=mpg) +
+  geom_point(mapping=aes(x=class,y=drv))
+```
+
+This is not useful because class and drv are both categorical variables.
