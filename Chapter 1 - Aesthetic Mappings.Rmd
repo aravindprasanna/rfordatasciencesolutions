@@ -1,0 +1,105 @@
+---
+title: "Chapter 1 - Aesthetic Mappings"
+author: "Aravind A"
+date: "20/01/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = TRUE)
+require("tidyverse")
+```
+
+1. 
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(
+    mapping=aes(x=displ,y=hwy,color='blue'))
+```
+
+ggplot considers color as a categorical variable with value blue. In order to change the aestheitc of the point to blue color , it is necessary to put in color = blue outside the  mappping construct such as
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(
+    mapping=aes(x=displ,y=hwy),color='blue')
+
+```
+
+2. 
+
+```{r}
+mpg
+```
+
+Any variable labelled as <chr> is categorical. Other variables labelled as <int> or <dbl> are continuous.
+
+3.
+
+Mapping a continuous variable cty to color
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(
+    mapping=aes(x=displ,y=hwy,color=cty))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(
+    mapping=aes(x=displ,y=hwy,size=cty))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(
+    mapping=aes(x=displ,y=hwy,shape=cty))
+```
+
+
+Mapping a categorical variable
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(
+    mapping=aes(x=displ,y=hwy,color=model))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(
+    mapping=aes(x=displ,y=hwy,shape=model))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(
+    mapping=aes(x=displ,y=hwy,size=model))
+```
+
+
+
+
+
+
+
+4. Mapping the same variable to multiple aesthetics. It just ends up creating a lot og clutter in the plaot
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(
+    mapping=aes(x=displ,y=hwy,color=trans,shape=trans,size=trans))
+```
+
+
+
+5. Stroke changes the border for shapes 21-24 
+
+6.It treats the output of displ  < 5 which is TRUE or FALSE and makes that categorical as well
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(
+    mapping=aes(x=displ,y=hwy,color=displ < 5))
+```
