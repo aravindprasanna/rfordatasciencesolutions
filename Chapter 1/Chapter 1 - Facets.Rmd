@@ -1,0 +1,62 @@
+---
+title: "Chapter 1 Facets"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require("tidyverse")
+```
+
+1. What happens when you facet on a continuous variable ?
+
+```{r}
+ggplot(data=mpg) +
+  geom_point(mapping=aes(x=displ,y=hwy)) +
+  facet_wrap(~cty)
+```
+
+2. Comparing the two graphs below
+
+```{r}
+ggplot(data=mpg)+
+  geom_point(mapping=aes(x=displ,y=hwy))+
+  facet_grid(drv~cyl)
+```
+
+```{r}
+ggplot(data=mpg) +
+  geom_point(mapping=aes(x=drv,y=cyl))
+```
+
+It is clear that no points exist within that subset of data for the combination of drive type and cylinder.
+
+3. By using a . you can suppress either the row dimension or the column dimension.
+
+```{r}
+ggplot(data=mpg)+
+  geom_point(mapping=aes(x= displ,y=hwy))+
+  facet_grid(drv ~ .)
+```
+
+
+```{r}
+ggplot(data=mpg)+
+  geom_point(mapping=aes(x=displ,y=hwy))+
+  facet_grid(.~cyl)
+```
+
+4. The advantage is that it is easier to look at trends in the subset of data. 
+
+The disadvantage is that with a color aesthetic since all the point remain on the same graph , it is easier to look at the position of each point with respect to all the other points.
+
+With a larger dataset it would be better to use facetting because with larger datasets the distinction amidst colors become more and more difficult to discern.
+
+
+```{r}
+ggplot(data=mpg)+
+  geom_point(mapping=aes(x=displ,y=hwy))+
+  facet_wrap(~class,nrow=2)
+```
